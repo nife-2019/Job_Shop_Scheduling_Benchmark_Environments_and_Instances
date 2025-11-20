@@ -63,6 +63,9 @@ def run_method(folder, exp_name, **kwargs):
     # Save results to JSON (will create or overwrite the file)
     with open(file_path, "w") as outfile:
         json.dump(results, outfile, indent=4)
+        
+    return jobShopEnv # return JobShop
+
 
 
 def main(param_file=PARAM_FILE):
@@ -77,7 +80,9 @@ def main(param_file=PARAM_FILE):
 
     exp_name = "gurobi_" + str(parameters['solver']["time_limit"]) + "/" + str(parameters['instance']['problem_instance'])
 
-    run_method(folder, exp_name, **parameters)
+    JobShop=run_method(folder, exp_name, **parameters)
+
+    return JobShop # return JobShop
 
 
 if __name__ == "__main__":
