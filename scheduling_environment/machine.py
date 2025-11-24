@@ -36,6 +36,12 @@ class Machine:
         """Returns the time moment all currently scheduled operations have been finished on this machine."""
         return max([operation.scheduled_end_time for operation in self.scheduled_operations], default=0)
 
+    @property
+    def U(self) -> float:
+        """Return the utilization of the machine."""
+        total_processing = sum([operation.scheduled_duration for operation in self.scheduled_operations])
+        return (total_processing / self.next_available_time) if self.next_available_time > 0 else 0
+
     def add_operation_to_schedule(self, operation: Operation, processing_time, sequence_dependent_setup_times):
         """Add an operation to the scheduled operations list of the machine without backfilling."""
 

@@ -84,7 +84,7 @@ class Operation:
     def finishing_time_predecessors(self) -> int:
         """Return the finishing time of the latest predecessor."""
         if not self.predecessors:
-            return 0
+            return self.job.arrival_time
         end_times_predecessors = [operation.scheduled_end_time for operation in self.predecessors]
         return max(end_times_predecessors)
 

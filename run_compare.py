@@ -51,6 +51,7 @@ def main(methods, config_files=None):
     for method, env in results.items():
         try:
             print(f"{method}_makespan: {env.makespan}")
+            print(f"{method}_U_ave: {env.U_ave}")
         except Exception:
             print(f"{method}_env: {env}")
 
