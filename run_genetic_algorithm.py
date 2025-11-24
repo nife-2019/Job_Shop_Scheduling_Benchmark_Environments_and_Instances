@@ -78,7 +78,7 @@ def run_method(jobShopEnv, population, toolbox, folder, exp_name, stats=None, ho
             logging.info('make_span: %s', jobShopEnv.makespan)
             draw_gantt_chart(jobShopEnv)
 
-        return hof[0]
+        return hof[0],jobShopEnv # return JobShop
 
     except Exception as e:
         logging.error(f"An error occurred during the algorithm run: {e}")
@@ -108,8 +108,8 @@ def main(param_file=PARAM_FILE):
 
     exp_name = ("/seed" + str(parameters['algorithm']["seed"]) + "/")
     population, toolbox, stats, hof, jobShopEnv = initialize_run(pool, **parameters)
-    best_individual = run_method(jobShopEnv, population, toolbox, folder, exp_name, stats, hof, **parameters)
-    return best_individual
+    best_individual,jobShopEnv = run_method(jobShopEnv, population, toolbox, folder, exp_name, stats, hof, **parameters)
+    return best_individual,jobShopEnv # return JobShop
 
 
 if __name__ == "__main__":

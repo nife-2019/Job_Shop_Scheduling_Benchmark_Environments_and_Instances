@@ -80,7 +80,7 @@ def run_method(**parameters):
 
     if parameters["testing"]["plotting"]:
         draw_gantt_chart(env_test.JSP_instance)
-
+    return env_test.JSP_instance # return JobShop
 
 def main(param_file=PARAM_FILE):
     try:
@@ -89,7 +89,8 @@ def main(param_file=PARAM_FILE):
         logging.error(f"Parameter file {param_file} not found.")
         return
 
-    run_method(**parameters)
+    jobShopEnv = run_method(**parameters)
+    return jobShopEnv # return JobShop
 
 
 if __name__ == "__main__":

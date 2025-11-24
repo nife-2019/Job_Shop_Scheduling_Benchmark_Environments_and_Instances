@@ -163,6 +163,17 @@ class JobShop:
         """Return the max workload of machines (sum of processing times of all scheduled operations on a machine)"""
         return max(sum(op.scheduled_duration for op in machine.scheduled_operations) for machine in self.machines)
 
+    @property
+    def U_ave(self) -> float:
+        """Return the average machine load (mean of U across all machines)."""
+        return (sum(machine.U for machine in self.machines) / len(self.machines)) if len(self.machines) > 0 else 0
+
+    @property
+    def Lateness_ave(self) -> float:
+        """Return the average lateness of all jobs."""
+        return sum(job.lateness for job in self.jobs) / self.nr_of_jobs
+
+
     def schedule_operation_with_backfilling(self, operation: Operation, machine_id, duration) -> None:
         """Schedule an operation"""
         if operation not in self.operations_available_for_scheduling:

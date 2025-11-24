@@ -72,7 +72,9 @@ def main(param_file: str = PARAM_FILE):
     if parameters['output']['plotting']:
         draw_precedence_relations(simulationEnv.JobShop)
         draw_gantt_chart(simulationEnv.JobShop)
-
+    
+    # return JobShop
+    return simulationEnv.JobShop
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run (Online) Job Shop Simulation Model")
